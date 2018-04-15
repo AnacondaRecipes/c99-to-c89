@@ -375,10 +375,14 @@ int main(int argc, char *argv[])
     if (!flag_compile || !source_file || !outname) {
         /* Doesn't seem like we should be invoked, just call the parameters as such */
         exit_code = exec_argv_out(pass_argv, NULL);
-
+        printf("Skipping doing anything, flag_compile=%d source_file=%s outname=%s\n", flag_compile, source_file, outname);
         goto exit;
     }
-
+    printf("cpp_argc=%d\n", cpp_argc);
+    for(int ik = 0; ik < cpp_argc; ik++)
+    {
+        printf("cpp_argv[%d]=%s\n", ik, cpp_argv[ik]);
+    }
     exit_code = exec_argv_out(cpp_argv, temp_file_1);
     if (exit_code) {
         if (!keep)
